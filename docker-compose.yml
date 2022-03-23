@@ -1,4 +1,3 @@
-# docker run -d --rm --name mongo -p 27017:27017 -v mongodbdata:/data/db mongo
 
 version: '3.8'
 
@@ -10,6 +9,24 @@ services:
       - 27017:27017
     volumes:
       - mongodbdata:/data/db  
+  
+  #declare a service for rabbitMQ: Line 16
+  # Set the image and the portal : line 17 
+  # Define two ports: First One for our services to communicate with rabbitmq and the second port for us to able to navigate to the rabbitmq portal : lines 20,21
+  rabbitmq:
+    image: rabbitmq:management
+    container_name: rabbitmq
+    ports:
+      #Consume message from rabbitmq
+      - 5672:5672
+      # To navigate to the rabbitmq portal
+      - 15672:15672
+    volumes:
+      - rabbitmqdata:/var/lib/rabbitmq
+    #Always specify the name since rabbit can provide a random name without specify the name
+    hostname: rabbitmq
 
 volumes:
   mongodbdata: 
+  rabbitmqdata:
+
