@@ -1,3 +1,3 @@
-# Play.Trading
+# Play.Infra
 
-Trading uses by Play Economy services.
+Play Economy Infrastructure components.
