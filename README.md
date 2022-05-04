@@ -32,8 +32,8 @@ $servicebusname = "playeconomymicroservices"
 az servicebus namespace create --name $servicebusname --resource-group $appname --sku Standard
 ```
 
-## Creating the Container Register
+## Creating the Container Registry
 ```powershell
-$containerregistername = "acrplayeconomy"
-az acr create --name $containerregistername --resource-group $appname --sku Basic 
+$containerregisteryname = "acrplayeconomy"
+az acr create --name $containerregisteryname --resource-group $appname --sku Basic 
 ```
