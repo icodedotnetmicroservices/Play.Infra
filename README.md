@@ -33,7 +33,20 @@ az servicebus namespace create --name $servicebusname --resource-group $appname 
 ```
 
 ## Creating the Container Registry
+
 ```powershell
 $containerregisteryname = "acrplayeconomy"
-az acr create --name $containerregisteryname --resource-group $appname --sku Basic 
+az acr create --name $containerregisteryname --resource-group $appname --sku Basic
+```
+
+## Creating the AKS Cluster
+
+```powershell
+$aksclustername = "aksclusterplayeconomy"
+az feature register --name EnablePodIdentityPreview --namespace Microsoft.ContainerService
+az extension add --name aks-preview
+
+az aks create -n $aksclustername -g $appname --node-vm-size DS2_v2 --location centralus --node-count 2 --attach-acr $containerregisteryname --enable-pod-identity --network-plugin azure
+
+az aks get-credentials --name $aksclustername --resource-group $appname
 ```
