@@ -50,3 +50,9 @@ az aks create -n $aksclustername -g $appname --node-vm-size DS2_v2 --location ce
 
 az aks get-credentials --name $aksclustername --resource-group $appname
 ```
+
+## Creating The Azure Key Vault
+``` powershell
+$azurekeyvaultname = "azkeyvaultplayeconomy"
+az keyvault create -n $azurekeyvaultname -g $appname
+```
