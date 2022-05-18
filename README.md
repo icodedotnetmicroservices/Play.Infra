@@ -73,3 +73,9 @@ kubectl wait --timeout=90s --for=condition=available deployment emissary-apiext 
  kubectl rollout status  deployment/emissary-ingress  -n $namespace -w
 
 ```
+
+## Configuring Emissary-ingress routing
+```powershell
+kubectl apply -f .\emissary-ingress\listener.yaml -n $namespace
+kubectl apply -f .\emissary-ingress\mappings.yaml -n $namespace
+```

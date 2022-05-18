@@ -1,0 +1,9 @@
+
+apiVersion: getambassador.io/v3alpha1
+kind: Mapping
+metadata:
+  name: identity-mapping
+spec:
+  hostname: playeconomy.centralus.cloudapp.azure.com
+  prefix: /identity-svc/
+  service: identity-service.identity
