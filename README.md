@@ -79,3 +79,12 @@ kubectl wait --timeout=90s --for=condition=available deployment emissary-apiext 
 kubectl apply -f .\emissary-ingress\listener.yaml -n $namespace
 kubectl apply -f .\emissary-ingress\mappings.yaml -n $namespace
 ```
+
+## Installing cert-manager
+```powershell
+helm repo add jetstack https://charts.jetstack.io
+helm repo update
+
+helm install cert-manager jetstack/cert-manager --version v1.8.0  --set installCRDs=true --namespace $namespace
+
+```
