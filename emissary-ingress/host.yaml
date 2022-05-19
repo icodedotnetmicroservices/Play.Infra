@@ -1,0 +1,12 @@
+
+apiVersion: getambassador.io/v3alpha1
+kind: Host
+metadata:
+  name: playeconomy-host
+spec:
+  hostname: playeconomy.centralus.cloudapp.azure.com
+  acmeProvider:
+   email: negpoze1@hotmail.com
+  tlsSecret:
+    name: playeconomy-tls
+      

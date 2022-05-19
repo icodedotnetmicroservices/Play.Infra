@@ -75,12 +75,14 @@ kubectl wait --timeout=90s --for=condition=available deployment emissary-apiext 
 ```
 
 ## Configuring Emissary-ingress routing
+
 ```powershell
 kubectl apply -f .\emissary-ingress\listener.yaml -n $namespace
 kubectl apply -f .\emissary-ingress\mappings.yaml -n $namespace
 ```
 
 ## Installing cert-manager
+
 ```powershell
 helm repo add jetstack https://charts.jetstack.io
 helm repo update
@@ -88,13 +90,21 @@ helm repo update
 helm install cert-manager jetstack/cert-manager --version v1.8.0  --set installCRDs=true --namespace $namespace
 ```
 
-## Creating the Cluster Issuer 
-``` powershell
+## Creating the Cluster Issuer
+
+```powershell
 kubectl apply -f .\cert-manager\cluster-issuer.yaml -n $namespace
 kubectl apply -f .\cert-manager\acme-challenge.yaml -n $namespace
 ```
 
 ## Creating the tls certificate
+
 ```powershell
 kubectl apply -f .\emissary-ingress\tls-certificate.yaml -n $namespace
+```
+
+## Enabling TLS and HTTPS
+
+```powershell
+kubectl apply -f .\emissary-ingress\host.yaml -n $namespace
 ```
