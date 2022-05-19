@@ -38,3 +38,13 @@ spec:
   hostname: playeconomy.centralus.cloudapp.azure.com
   prefix: /trading-svc/
   service: trading-service.trading
+
+---
+apiVersion: getambassador.io/v3alpha1
+kind: Mapping
+metadata:
+  name: frontend-mapping
+spec:
+  hostname: playeconomy.centralus.cloudapp.azure.com
+  prefix: /
+  service: frontend-client.frontend
