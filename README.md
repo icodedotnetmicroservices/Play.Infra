@@ -110,6 +110,7 @@ kubectl apply -f .\emissary-ingress\host.yaml -n $namespace
 ```
 
 ## Packaging and publishing the microservice Helm chart
+
 ```powershell
 helm package .\helm\microservice
 
@@ -120,4 +121,12 @@ $env:HEML_EXPERIMENTAL_OCI=1
 helm registry login "acr$appname.azurecr.io" --username $helmUser --password $helmPassword
 
 helm push microservice-0.1.0.tgz oci://acr$appname.azurecr.io/helm
+```
+## Create Github service principal
+```powershell
+$appId = az ad sp create-for-rbac -n "GitHub" --skip-assignment --query appId --output tsv
+
+az role assignment create --assignee $appId --role "AcrPush" --resource-group $appname
+az role assignment create --assignee $appId --role "Azure Kubernetes Service Cluster User Role" --resource-group $appname
+az role assignment create --assignee $appId --role "Azure Kubernetes Service Contributor Role" --resource-group $appname
 ```
